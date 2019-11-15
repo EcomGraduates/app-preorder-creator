@@ -1,0 +1,12 @@
+{
+	"name": "Pre-Order Creator",
+	"handle": "PreOrderCreator",
+	"info": "Manage pre-order & coming-soon products",
+	"settings": true,
+	"docs": "https://github.com/sellfino/app-preorder-creator",
+	"author": {
+		"name": "Lucas • Sellfino",
+		"url": "https://www.sellfino.com"
+	},
+  "version": "1.0.0"
+}
