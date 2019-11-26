@@ -15,7 +15,6 @@
             </div>
             <div class="col-lg-6 col-5 text-right">
               <div class="loading text-sm font-weight-600 text-neutral" v-if="loading">Loading... <span class="badge ml-2"></span></div>
-              <a href="#" class="btn btn-sm btn-neutral" @click.prevent="modal = true" v-if="tabActive == 'products'" :class="{ disabled: loading }">Add Product</a>
             </div>
           </div>
           <div class="row">
@@ -34,7 +33,7 @@
               <div class="row align-items-center">
                 <div class="col-6">
                   <h3 class="mb-0" v-if="tabActive == 'orders'">Orders with Pre-Order Products</h3>
-                  <h3 class="mb-0" v-else>Manage Pre-Order Products</h3>
+                  <h3 class="mb-0" v-else>Manage Pre-Order Products <a href="#" class="btn btn-sm btn-primary ml-4 position-absolute" @click.prevent="modal = true" :class="{ disabled: loading }">Add Product</a></h3>
                 </div>
                 <div class="col-6">
                   <form class="float-right" @submit.prevent="searchRun" v-if="list.length">
@@ -131,7 +130,7 @@
                       <a href="" class="btn btn-icon-only" :class="{ 'text-muted' : !el.active, 'text-success' : el.active, disabled: loading }" @click.prevent="toggle(el)">
                         <i class="fas" :class="{ 'fa-toggle-off' : !el.active, 'fa-toggle-on' : el.active }"></i>
                       </a>
-                      <a href="" class="btn btn-icon-only text-danger" @click.prevent="deleteItem(el)" :class="{ disabled: loading }">
+                      <a href="" class="btn btn-icon-only text-danger" @click.prevent="remove(el)" :class="{ disabled: loading }">
                         <i class="fas fa-trash-alt"></i>
                       </a>
                       <a :href="admin_link(el.id, tabActive)" class="btn btn-icon-only text-primary" target="_blank">
@@ -263,7 +262,7 @@ module.exports = {
         alert(error)
       })
     },
-    deleteItem: function(item) {
+    remove: function(item) {
       var self = this
 
       r = confirm('Are you sure?')
@@ -318,10 +317,9 @@ module.exports = {
       this.page = this.$root.viewPrevData.page
       this.search = this.$root.viewPrevData.search
       this.$root.viewPrevData = null
-      this.load('products')
-    } else {
-      this.load('orders')
     }
+
+    this.load(this.tabActive)
   }
 }
 </script>

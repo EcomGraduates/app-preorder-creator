@@ -63,7 +63,7 @@ Class App
     if ($search != '') {
       $items = array_filter($items, function($item) use($handle, $search) {
         if ($handle == 'orders') {
-          return strpos($item['name'], $search) !== false;
+          return strpos(strtolower($item['name']), strtolower($search)) !== false;
         } else {
           return strpos(strtolower($item['id']), strtolower($search)) !== false;
         }
@@ -86,7 +86,7 @@ Class App
     $data = json_decode(file_get_contents('php://input'), true);
     $items = DB::get('products', 'PreOrderCreator.json');
 
-    if (!isset($data['metafield'])) {
+    if (!isset($data['metafield_id'])) {
       $meta = [
         'metafield' => [
           'namespace' => 'sellfino',
@@ -99,28 +99,22 @@ Class App
       $res = Shopify::request('products/' . $data['id'] . '/metafields', $meta, 'POST');
       $res = json_decode($res, true);
 
-      $data['metafield'] = $res['metafield']['id'];
+      $data['metafield_id'] = $res['metafield']['id'];
 
     } else {
 
       $meta = [
         'metafield' => [
-          'id' => $data['metafield'],
+          'id' => $data['metafield_id'],
           'value' => json_encode($data)
         ]
       ];
 
-      Shopify::request('products/' . $data['id'] . '/metafields/' . $data['metafield'], $meta, 'PUT');
+      Shopify::request('products/' . $data['id'] . '/metafields/' . $data['metafield_id'], $meta, 'PUT');
 
     }
 
-    $found = false;
-
-    foreach ($items as $key => $item) {
-      if ($item['id'] == $data['id']) {
-        $found = $key;
-      }
-    }
+    $found = array_search($data['id'], array_column($items, 'id'));
 
     if (!is_bool($found)) {
 
@@ -145,17 +139,11 @@ Class App
 
     $data = json_decode(file_get_contents('php://input'), true);
     $items = DB::get('products', 'PreOrderCreator.json');
-    $found = null;
+    $found = array_search($data['id'], array_column($items, 'id'));
 
-    foreach ($items as $key => $item) {
-      if ($item['id'] == $data['id']) {
-        $found = $key;
-      }
-    }
+    if (!is_bool($found)) {
 
-    if (!is_null($found)) {
-
-      Shopify::request('products/' . $items[$found]['id'] . '/metafields/' . $items[$found]['metafield'], [], 'DELETE');
+      Shopify::request('products/' . $items[$found]['id'] . '/metafields/' . $items[$found]['metafield_id'], [], 'DELETE');
       unset($items[$found]);
       DB::put('products', $items, 'PreOrderCreator.json');
       
