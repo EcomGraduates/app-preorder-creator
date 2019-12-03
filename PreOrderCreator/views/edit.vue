@@ -83,7 +83,8 @@
                     <th class="w-20">Variant</th>
                     <th class="w-20">Type</th>
                     <th class="w-20">Button Text</th>
-                    <th class="w-40">Note</th>
+                    <th class="w-30">Note</th>
+                    <th class="w-10"></th>
                   </tr>
                 </thead>
                 <tbody class="list">
@@ -92,12 +93,17 @@
                     <td>
                       <select class="form-control" v-model="variant.type">
                         <option value="">Inherit</option>
-                        <option value="product">Pre-Order Product</option>
+                        <option value="preorder">Pre-Order Product</option>
                         <option value="comingsoon">Coming Soon Product</option>
                       </select>
                     </td>
                     <td><input type="text" class="form-control" v-model="variant.button"></td>
                     <td><input type="text" class="form-control" v-model="variant.note"></td>
+                    <td class="text-right">
+                      <a href="" class="btn btn-icon-only" :class="{ 'text-muted' : !variant.active, 'text-success' : variant.active, disabled: loading }" @click.prevent="variant.active = !variant.active">
+                        <i class="fas" :class="{ 'fa-toggle-off' : !variant.active, 'fa-toggle-on' : variant.active }"></i>
+                      </a>
+                    </td>
                   </tr>
                 </tbody>
               </table>

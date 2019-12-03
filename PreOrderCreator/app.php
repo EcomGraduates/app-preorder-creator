@@ -86,7 +86,7 @@ Class App
     $data = json_decode(file_get_contents('php://input'), true);
     $items = DB::get('products', 'PreOrderCreator.json');
 
-    if (!isset($data['metafield_id'])) {
+    if (!isset($data['metafield_id']) || !$data['metafield_id']) {
       $meta = [
         'metafield' => [
           'namespace' => 'sellfino',
