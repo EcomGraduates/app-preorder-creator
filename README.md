@@ -5,6 +5,11 @@
 ## Pre-Order Creator
 Manage pre-order & coming-soon products. Pre-order are products that can be ordered and shipment is set in the future. Coming soons are products that cannot be ordered and are just information about upcoming stock.
 
+## Demo & Screenshots
+Check how this app works in the live store: [DEMO](https://sellfino.myshopify.com/collections/featured/products/green-dress-preorder-coming-soon)
+
+<a href="https://sellfino.com/images/screens/preorder/preorder-1.jpg" target="_blank" rel="noopener noreferrer"><img width="19%" src="https://sellfino.com/images/screens/preorder/preorder-1.jpg"></a> <a href="https://sellfino.com/images/screens/preorder/preorder-2.jpg" target="_blank" rel="noopener noreferrer"><img width="19%" src="https://sellfino.com/images/screens/preorder/preorder-2.jpg"></a> <a href="https://sellfino.com/images/screens/preorder/preorder-3.jpg" target="_blank" rel="noopener noreferrer"><img width="19%" src="https://sellfino.com/images/screens/preorder/preorder-3.jpg"></a> <a href="https://sellfino.com/images/screens/preorder/preorder-4.jpg" target="_blank" rel="noopener noreferrer"><img width="19%" src="https://sellfino.com/images/screens/preorder/preorder-4.jpg"></a> <a href="https://sellfino.com/images/screens/preorder/preorder-5.jpg" target="_blank" rel="noopener noreferrer"><img width="19%" src="https://sellfino.com/images/screens/preorder/preorder-5.jpg"></a>
+
 ## Installation
 - **1.** Add this app to Sellfino App Store.
 - **2.** Go to the app and open *Products* tab. Click *Add Product*. Choose the product you want to create preorder settings for.
