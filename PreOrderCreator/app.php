@@ -90,7 +90,7 @@ Class App
       $meta = [
         'metafield' => [
           'namespace' => 'sellfino',
-          'key' => 'PreOrder',
+          'key' => 'preorder',
           'value' => json_encode($data),
           'value_type' => 'json_string'
         ]
